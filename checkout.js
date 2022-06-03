@@ -85,6 +85,38 @@ calculateCardTotal();
 
 
 const calculateCardTotal=()=>{
+    let productsTotalPriceDivs=document.querySelectorAll(".product-line-price")
+
+    let subtotal=0;
+
+    productsTotalPriceDivs.forEach((eachprice)=>{
+        subtotal+=parseFloat(eachprice.innerText)
+    });
+    console.log(subtotal);
+
+    let taxPrice=subtotal*localStorage.getItem("taxRate");
+
+    let shippingPrice=parseFloat(localStorage.getItem('shippingPrice'));
+
+    let cartTotal=subtotal+taxPrice+shippingPrice;
+
+    document.querySelector("#cart-subtotal p:nth-child(2)").innerText=subtotal.toFixed(2)
+    
+    document.querySelector("#cart-tax p:nth-child(2)").innerText=taxPrice.toFixed(2)
+   
+    document.querySelector("#cart-shipping p:nth-child(2)").innerText=shippingPrice.toFixed(2);
+
+
+    document.querySelector("#cart-total").lastElementChild.innerText=cartTotal.toFixed(2);
+
+
+
+
+
+
+
+
+  
 
 }
 
